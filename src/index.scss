@@ -1,0 +1,348 @@
+$serif-font: "Helvetica";
+$sans-serif-font: "Georgia";
+$base-black: #000000;
+$base-black-light: #2e2f2f;
+$base-black-lighter: #5d5d5d;
+$base-white: #ffffff;
+$base-grey: #dddddd;
+$base-grey-light: #bbbcbc;
+$primary-color: #316eef;
+$darker-color: #1f58d2;
+$darkest-color: #1b3979;
+$error-color: #d83e00;
+$x1: 8px;
+$x2: 2*$x1;
+$x3: 3*$x1;
+$elevation5: 0px 3px 10px rgba($base-black, 9%);
+
+%default-text {
+  font-size: 12.9px;
+  line-height: 150%;
+  letter-spacing: 0.023em;
+}
+
+:root {
+  --darkest-color: #{$darkest-color};
+  --base-grey: #{$base-grey};
+}
+
+.page {
+  margin: 0 auto;
+  padding: 0;
+  background-color: $base-white;
+  color: $base-black;
+  font-family: $serif-font;
+  min-width: 370px;
+}
+.header {
+  margin: 0;
+  padding: $x2 23px 15px;
+  box-shadow: $elevation5;
+  font-family: $sans-serif-font;
+  &__heading {
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 125%;
+    letter-spacing: -0.013em;
+  }
+}
+.main {
+  margin: $x3 17.5px 0;
+  max-width: 1200px;
+}
+.values {
+  box-sizing: border-box;
+  height: 560px;
+  padding: $x2 $x2 90px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: $elevation5;
+  .text {
+    @extend %default-text;
+    margin: 0 0 12px;
+  }
+  .divider {
+    margin: 0 -#{$x2} $x2;
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: $base-grey;
+  }
+}
+.results {
+  display: none;
+  box-sizing: border-box;
+  margin: 0 6px 58px;
+  padding: $x3 14px 54px;
+  border-radius: 0px 0px $x1 $x1;
+  background-color: rgba($base-grey, 10%);
+  position: relative;
+  z-index: 1;
+  &--active {
+    display: block;
+  }
+  &__heading {
+    margin: 0;
+    font-size: 25px;
+    line-height: 150%;
+  }
+  &__row {
+    display: flex;
+    margin: 0;
+    padding: 25px 0 12px;
+    border-bottom: 1px solid $base-grey;
+  }
+  &__text {
+    @extend %default-text;
+    flex-grow: 1;
+    color: $base-black-lighter;
+  }
+  &__amount {
+    font-size: $x2;
+    line-height: 125%;
+    color: $base-grey;
+    &--active {
+      color: $base-black;
+    }
+  }
+}
+.label {
+  display: block;
+  width: 100%;
+  color: $base-black;
+  font-size: 14.4px;
+  line-height: $x3;
+}
+.input {
+  box-sizing: border-box;
+  padding: 13px 10px;
+  border: 1px solid $base-grey-light;
+  border-radius: $x1;
+  font-size: $x2;
+  line-height: 125%;
+  &:focus {
+    border: 1px solid $darker-color;
+    background-color: rgba($primary-color, 3%);
+    outline: none;
+    box-shadow: $elevation5;
+  }
+  &--error {
+    border-color: $error-color;
+  }
+}
+.slider {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  &__range {
+    height: $x1;
+    margin: 0 $x2;
+    border: none;
+    border-radius: $x1;
+    background: linear-gradient(
+      to right,
+      $darkest-color,
+      $base-grey 0%,
+      $base-grey 100%
+    );
+    flex-grow: 1;
+    appearance: none;
+    transition: background 450ms ease-in;
+    &::-webkit-slider-thumb {
+      width: $x3;
+      height: $x3;
+      border: none;
+      border-radius: 50%;
+      background-color: $base-white;
+      appearance: none;
+      box-shadow: $elevation5;
+    }
+    &::-moz-range-thumb {
+      // If extended, overrides ::-webkit-slider-thumb pseudo-class in Chrome
+      height: $x3;
+      width: $x3;
+      border: none;
+      border-radius: 50%;
+      background-color: $base-white;
+      appearance: none;
+      box-shadow: $elevation5;
+    }
+    &::-ms-fill-lower,
+    &::-moz-range-progress {
+      background-color: $darkest-color;
+    }
+    &::-ms-fill-upper,
+    &::-moz-range-track {
+      background-color: $base-grey;
+    }
+  }
+  &__text {
+    font-size: 14.5px;
+    line-height: $x3;
+    letter-spacing: 0.023em;
+    &--left {
+      min-width: 21px;
+    }
+  }
+  &__input {
+    width: 88px;
+    text-align: center;
+    margin-top: -2px;
+    margin-left: $x2;
+    &::before {
+      content: "$";
+      position: absolute;
+      top: 5px;
+      left: 15px;
+    }
+  }
+}
+.field {
+  margin-bottom: $x2;
+  &__label {
+    margin-bottom: $x1;
+  }
+  &__input-container {
+    position: relative;
+  }
+  &__input-icon {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: $x3;
+    transform: translate(0, -50%);
+    pointer-events: none;
+    font-style: normal;
+    text-align: center;
+  }
+  &__input {
+    width: 100%;
+    padding: 13px 10px 13px 35px;
+  }
+  &__error {
+    @extend %default-text;
+    margin-top: $x1;
+    &--red {
+      color: $error-color;
+    }
+  }
+}
+.row {
+  display: flex;
+  align-content: stretch;
+  &--2cols {
+    column-gap: $x2;
+  }
+  .field {
+    flex-grow: 1;
+  }
+}
+.button {
+  width: 100%;
+  margin: 15px 0 0;
+  padding: 0;
+  border: none;
+  border-radius: $x1;
+  background-color: $primary-color;
+  color: $base-white;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 48px;
+}
+
+@media screen and (max-width: 1199px) {
+  .slider {
+    &__label {
+      font-size: 12.8px;
+      line-height: 150%;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    padding: 12.5px 30px;
+    &__heading {
+      max-width: 1140px;
+      font-size: 31.25px;
+    }
+  }
+  .main {
+    margin: 48px auto;
+    display: flex;
+    align-items: start;
+  }
+  .values {
+    height: auto;
+    max-width: 677px;
+    margin: 0 0 0 30px;
+    padding: $x3 $x3 40px;
+    flex-grow: 1;
+    .text {
+      font-size: 14.5px;
+      line-height: $x3;
+      margin-bottom: $x2;
+    }
+    .divider {
+      margin: 0 0 25px;
+    }
+  }
+  .results {
+    flex-grow: 1;
+    display: block;
+    max-width: 463px;
+    margin: 40px 30px 0 0;
+    padding: 56px 32px 47px;
+    &__row {
+      border-bottom: none;
+      display: block;
+      &--featured {
+        border-top: 1px solid $base-grey;
+        padding-bottom: 0;
+      }
+    }
+    &__text {
+      font-size: 16.1px;
+      line-height: 28px;
+      &--big {
+        font-size: 20px;
+        line-height: 150%;
+        color: $base-black-lighter;
+      }
+    }
+    &__amount {
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 150%;
+    }
+  }
+  .slider {
+    margin-top: 10px;
+    margin-bottom: 34.5px;
+    #years {
+      visibility: hidden;
+    }
+    &__label {
+      margin-bottom: 12px;
+    }
+    &__text {
+      font-size: 20px;
+      line-height: 150%;
+    }
+    &__range {
+      height: $x2;
+      border-radius: $x2;
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+  .field {
+    margin-bottom: 13px;
+  }
+}

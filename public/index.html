@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Mortgage Calculator by Javier Parada</title>
+</head>
+<body class="page">
+  <header class="header">
+    <h1 class="header__heading">Mortgage Calculator</h1>
+  </header>
+  <main class="main">
+    <section class="values">
+      <p class="text">Change values to calculate your results</p>
+      <hr class="divider" />
+      <form class="values__form">
+        <div class="row">
+          <div class="slider">
+          <label for="years-range" class="label slider__label">Years of mortgage</label>
+          <span class="slider__text slider__text--left" aria-hidden="true">1</span>
+          <input type="range" class="slider__range" id="years-range" value="1" min="1" max="40" data-input="years" />
+          <span class="slider__text slider__text--right">40</span>
+          <input type="number" class="input slider__input" id="years" value="1" min="1" max="40" aria-label="Years of martgage" />
+        </div>
+        </div>
+        <div class="row">
+        <div class="slider">
+          <label for="int-rate-range" class="label slider__label">Rate of interest (%)</label>
+          <span class="slider__text slider__text--left" aria-hidden="true">0.1</span>
+          <input type="range" class="slider__range" id="int-rate-range" value="0.1" min="0.1" max="10" step="0.1" data-input="int-rate" />
+          <span class="slider__text slider__text--right">10</span>
+          <input type="number" class="input slider__input" id="int-rate" value="0.1" min="0.1" max="10" step="0.1" aria-label="Rate of interest (%)" />
+        </div>
+      </div>
+        <div class="row">
+          <div class="field">
+            <label for="amount" class="label field__label">Loan Amount</label>
+            <div class="field__input-container">
+              <i class="field__input-icon">$</i>
+              <input type="text" class="input field__input" id="amount" aria-describedby="amount-error" />
+            </div>
+            <div id="amount-error" class="field__error field__error--red"></div>
+          </div>
+        </div>
+        <div class="row row--2cols">
+          <div class="field">
+            <label for="tax" class="label field__label">Annual Tax</label>
+            <div class="field__input-container">
+              <i class="field__input-icon">$</i>
+              <input type="text" class="input field__input" id="tax" aria-describedby="tax-error" />
+            </div>
+            <div id="tax-error" class="field__error field__error--red"></div>
+          </div>
+          <div class="field">
+            <label for="insurance" class="label field__label">Annual Insurance</label>
+            <div class="field__input-container">
+              <i class="field__input-icon">$</i>
+              <input type="text" class="input field__input" id="insurance" aria-describedby="insurance-error" />
+            </div>
+            <div id="insurance-error" class="field__error field__error--red"></div>
+          </div>
+        </div>
+        
+        <button type="submit" class="button">Calculate</button>
+      </form>
+    </section>
+    <section class="results">
+      <h2 class="results__heading">Your results</h2>
+      <div class="results__row">
+        <div class="results__text">
+          Principal & Interest
+        </div>
+        <div class="results__amount">
+          $ <span id="r-principal" class="results__value">- -</span>
+        </div>
+      </div>
+      <div class="results__row">
+        <div class="results__text">
+          Tax
+        </div>
+        <div class="results__amount">
+          $ <span id="r-tax" class="results__value">- -</span>
+        </div>
+      </div>
+      <div class="results__row">
+        <div class="results__text">
+          Insurance
+        </div>
+        <div class="results__amount">
+          $ <span id="r-insurance" class="results__value">- -</span>
+        </div>
+      </div>
+      
+      <div class="results__row results__row--featured">
+        <div class="results__text results__text--big">
+          Total Monthly Payment
+        </div>
+        <div class="results__amount">
+          $ <span id="r-total" class="results__value">- -</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./index.js"></script>
+</body>
+</html>
